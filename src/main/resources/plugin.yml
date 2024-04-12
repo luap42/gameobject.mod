@@ -7,28 +7,21 @@ commands:
   go-lock:
     description: Locks the currently held item stack with a secret key so that only items locked with that key stack.
     usage: /go-lock <key>
-    permission: gameobjectmod.lock
   go-unlock:
     description: Unlocks the currently held item stack if the secret key is provided.
     usage: /go-unlock <key>
-    permission: gameobjectmod.lock
   go-lore:
     description: Adds/replaces lore on the currently held item stack.
     usage: /go-lore <text>
-    permission: gameobjectmod.format
   go-format:
     description: Allows modifying formatting options for the name of the currently held item stack
     usage: /go-format clear|{bold,italic,yellow,red,pink,purple,blue,aqua,green,darkgreen,white,gray|grey,black}*
-    permission: gameobjectmod.format
   go-custommodel:
     description: Set or clear a custom model data ID
     usage: /go-custommodel clear|<id>
-    permission: gameobjectmod.model
   go-save:
     description: Saves the GameObject information of the currently held item stack for later /go-apply under your user account
-    usage: /go-save <name>
-    permission: gameobjectmod.all
+    usage: /go-save <name> [<secretKey>]
   go-apply:
     description: Attempts to apply the GameObject information saved under <name> to the currently held item stack, provided the item name is set correctly
     usage: /go-apply <name>
-    permission: gameobjectmod.all
