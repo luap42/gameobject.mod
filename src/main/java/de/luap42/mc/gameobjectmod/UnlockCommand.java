@@ -24,8 +24,6 @@ public class UnlockCommand  implements CommandExecutor {
 
             ItemStack currentItemStack = player.getInventory().getItemInMainHand();
 
-            System.out.println(currentItemStack.getType().toString());
-
             ItemMeta itemMeta;
             if (currentItemStack.hasItemMeta())
                 itemMeta = currentItemStack.getItemMeta();

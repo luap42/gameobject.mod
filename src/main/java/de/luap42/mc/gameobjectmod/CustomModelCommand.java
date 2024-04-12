@@ -13,7 +13,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
-public class LockCommand implements CommandExecutor {
+public class CustomModelCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] strings) {
         if (sender instanceof Player) {
@@ -31,16 +31,14 @@ public class LockCommand implements CommandExecutor {
             else
                 itemMeta = Bukkit.getItemFactory().getItemMeta(currentItemStack.getType());
 
-            PersistentDataContainer data = itemMeta.getPersistentDataContainer();
-            NamespacedKey lockKey = NamespacedKey.fromString("locked");
-
-            if(data.has(lockKey, PersistentDataType.STRING)) {
-                player.sendMessage("Item is locked. Use /go-unlock <key> to unlock this item.");
-                return true;
+            if(strings[0].equals(("clear"))) {
+                itemMeta.setCustomModelData(null);
             } else {
-                data.set(lockKey, PersistentDataType.STRING, strings[0]);
-                player.sendMessage("Item locked successfully.");
+                itemMeta.setCustomModelData(Integer.getInteger(strings[0], null));
             }
+
+            player.sendMessage("Custom Model Data has been updated.");
+
             currentItemStack.setItemMeta(itemMeta);
         }
 

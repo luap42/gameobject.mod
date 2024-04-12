@@ -20,3 +20,7 @@ commands:
     description: Allows modifying formatting options for the name of the currently held item stack
     usage: /go-format clear|{bold,italic,yellow,red,pink,purple,blue,aqua,green,darkgreen,white,gray|grey,black}*
     permission: gameobjectmod.format
+  go-custommodel:
+    description: Set or clear a custom model data ID
+    usage: /go-custommodel clear|<id>
+    permission: gameobjectmod.model
