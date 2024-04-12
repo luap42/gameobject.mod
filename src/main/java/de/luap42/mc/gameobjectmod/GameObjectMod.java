@@ -13,6 +13,7 @@ public final class GameObjectMod extends JavaPlugin {
         this.getCommand("go-custommodel").setExecutor(new CustomModelCommand());
 
         this.getCommand("go-save").setExecutor(new SaveCommand());
+        this.getCommand("go-apply").setExecutor(new ApplyCommand());
     }
 
     @Override

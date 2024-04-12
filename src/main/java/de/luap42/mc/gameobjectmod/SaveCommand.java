@@ -37,8 +37,6 @@ public class SaveCommand implements CommandExecutor {
             PersistentDataContainer playerData = player.getPersistentDataContainer();
             NamespacedKey lockKey = NamespacedKey.fromString("locked");
 
-            player.sendMessage(saveName + "-" + "exists");
-
             storeString(playerData, saveName, "exists", "yes");
 
             if (itemMeta.hasDisplayName())
@@ -69,7 +67,6 @@ public class SaveCommand implements CommandExecutor {
 
     private void storeString(PersistentDataContainer playerData, String saveName, String key, String value) {
         NamespacedKey nkey = NamespacedKey.fromString(saveName + "." + key);
-        System.out.println(nkey);
         playerData.set(nkey, PersistentDataType.STRING, value);
     }
 }
