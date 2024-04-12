@@ -1,0 +1,4 @@
+name: GameObject.mod
+version: '${project.version}'
+main: de.luap42.mc.gameobjectmod.GameObjectMod
+api-version: '1.20'
