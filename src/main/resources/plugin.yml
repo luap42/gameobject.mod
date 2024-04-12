@@ -8,3 +8,7 @@ commands:
     description: Locks the currently held item stack with a secret key so that only items locked with that key stack.
     usage: /go-lock <key>
     permission: gameobjectmod.lock
+  go-unlock:
+    description: Unlocks the currently held item stack if the secret key is provided.
+    usage: /go-unlock <key>
+    permission: gameobjectmod.lock
