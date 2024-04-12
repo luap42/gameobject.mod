@@ -1,7 +1,7 @@
 package de.luap42.mc.gameobjectmod;
 
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -34,7 +34,9 @@ public class LoreCommand  implements CommandExecutor {
             else
                 itemMeta = Bukkit.getItemFactory().getItemMeta(currentItemStack.getType());
 
-            itemMeta.setLore(List.of(String.join(" ", strings).split("//")));
+            String text = ChatColor.WHITE + String.join(" ", strings);
+
+            itemMeta.setLore(List.of(String.join("\n" + ChatColor.WHITE, text.split("//")).split("\n")));
 
             player.sendMessage("Lore has been updated.");
             currentItemStack.setItemMeta(itemMeta);

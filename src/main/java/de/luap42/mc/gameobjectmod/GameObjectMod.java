@@ -9,6 +9,7 @@ public final class GameObjectMod extends JavaPlugin {
         this.getCommand("go-lock").setExecutor(new LockCommand());
         this.getCommand("go-unlock").setExecutor(new UnlockCommand());
         this.getCommand("go-lore").setExecutor(new LoreCommand());
+        this.getCommand("go-format").setExecutor(new FormatCommand());
     }
 
     @Override

@@ -16,3 +16,7 @@ commands:
     description: Adds/replaces lore on the currently held item stack.
     usage: /go-lore <text>
     permission: gameobjectmod.format
+  go-format:
+    description: Allows modifying formatting options for the name of the currently held item stack
+    usage: /go-format clear|{bold,italic,yellow,red,pink,purple,blue,aqua,green,darkgreen,white,gray|grey,black}*
+    permission: gameobjectmod.format
