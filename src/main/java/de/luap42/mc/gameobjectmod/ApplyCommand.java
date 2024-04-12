@@ -49,6 +49,9 @@ public class ApplyCommand implements CommandExecutor {
 
             String savedDisplayName = fetchString(playerData, saveName, "display_name");
             String currentDisplayName = itemMeta.getDisplayName();
+            if (currentDisplayName == null || currentDisplayName.isEmpty()) {
+                currentDisplayName = FormatCommand.itemIDtoName(currentItemStack.getType().name().toLowerCase().replace("_", " "));
+            }
 
             if (savedDisplayName == null) {
                 player.sendMessage("No display name found (weird...).");

@@ -104,7 +104,7 @@ public class FormatCommand  implements CommandExecutor {
         return col + displayName;
     }
 
-    private String itemIDtoName(String id) {
+    static String itemIDtoName(String id) {
         String regex = "\\b(.)(.*?)\\b";
         String result = Pattern.compile(regex).matcher(id).replaceAll(
             match -> match.group(1).toUpperCase() + match.group(2)
