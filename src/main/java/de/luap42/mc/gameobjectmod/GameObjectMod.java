@@ -8,6 +8,7 @@ public final class GameObjectMod extends JavaPlugin {
     public void onEnable() {
         this.getCommand("go-lock").setExecutor(new LockCommand());
         this.getCommand("go-unlock").setExecutor(new UnlockCommand());
+        this.getCommand("go-lore").setExecutor(new LoreCommand());
     }
 
     @Override
