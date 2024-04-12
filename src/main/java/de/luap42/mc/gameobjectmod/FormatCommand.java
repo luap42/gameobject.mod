@@ -56,6 +56,8 @@ public class FormatCommand  implements CommandExecutor {
                 return setBold(displayName);
             case "italic":
                 return setItal(displayName);
+            case "magic":
+                return setMagic(displayName);
             case "yellow":
                 return setColor(displayName, ChatColor.YELLOW);
             case "red":
@@ -94,6 +96,9 @@ public class FormatCommand  implements CommandExecutor {
     }
     private String setItal(String displayName) {
         return ChatColor.ITALIC + displayName;
+    }
+    private String setMagic(String displayName) {
+        return ChatColor.MAGIC + displayName;
     }
     private String setColor(String displayName, ChatColor col) {
         return col + displayName;
