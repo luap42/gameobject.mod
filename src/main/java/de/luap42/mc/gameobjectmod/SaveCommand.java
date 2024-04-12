@@ -19,11 +19,16 @@ public class SaveCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(strings.length != 1) {
+            if(strings.length == 0 || strings.length > 2) {
                 return false;
             }
 
             String saveName = strings[0];
+            String secretKey = null;
+
+            if(strings.length == 2) {
+                secretKey = strings[1];
+            }
 
             ItemStack currentItemStack = player.getInventory().getItemInMainHand();
 
@@ -36,6 +41,16 @@ public class SaveCommand implements CommandExecutor {
             PersistentDataContainer itemData = itemMeta.getPersistentDataContainer();
             PersistentDataContainer playerData = player.getPersistentDataContainer();
             NamespacedKey lockKey = NamespacedKey.fromString("locked");
+
+            if (itemData.has(lockKey)) {
+                if (secretKey == null) {
+                    player.sendMessage("Could not save: this item stack is LOCKED, pass the secret key as second command parameter");
+                    return false;
+                } else if (!itemData.get(lockKey, PersistentDataType.STRING).equals(secretKey)) {
+                    player.sendMessage("Could not save: invalid secret key passed.");
+                    return false;
+                }
+            }
 
             storeString(playerData, saveName, "exists", "yes");
 
