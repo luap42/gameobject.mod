@@ -10,7 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.regex.Pattern;
+
+import static java.awt.SystemColor.text;
 
 public class FormatCommand  implements CommandExecutor {
     @Override
@@ -31,6 +33,9 @@ public class FormatCommand  implements CommandExecutor {
                 itemMeta = Bukkit.getItemFactory().getItemMeta(currentItemStack.getType());
 
             String displayName = itemMeta.getDisplayName();
+            if (displayName == null || displayName.isEmpty()) {
+                displayName = itemIDtoName(currentItemStack.getType().name().toLowerCase().replace("_", " "));
+            }
             for (String option : strings) {
                 displayName = applyOption(displayName, option);
             }
@@ -92,6 +97,15 @@ public class FormatCommand  implements CommandExecutor {
     }
     private String setColor(String displayName, ChatColor col) {
         return col + displayName;
+    }
+
+    private String itemIDtoName(String id) {
+        String regex = "\\b(.)(.*?)\\b";
+        String result = Pattern.compile(regex).matcher(id).replaceAll(
+            match -> match.group(1).toUpperCase() + match.group(2)
+        );
+
+        return result;
     }
 
 }
