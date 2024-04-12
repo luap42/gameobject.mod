@@ -24,3 +24,11 @@ commands:
     description: Set or clear a custom model data ID
     usage: /go-custommodel clear|<id>
     permission: gameobjectmod.model
+  go-save:
+    description: Saves the GameObject information of the currently held item stack for later /go-apply under your user account
+    usage: /go-save <name>
+    permission: gameobjectmod.all
+  go-apply:
+    description: Attempts to apply the GameObject information saved under <name> to the currently held item stack, provided the item name is set correctly
+    usage: /go-apply <name>
+    permission: gameobjectmod.all
