@@ -2,3 +2,9 @@ name: GameObject.mod
 version: '${project.version}'
 main: de.luap42.mc.gameobjectmod.GameObjectMod
 api-version: '1.20'
+
+commands:
+  go-lock:
+    description: Locks the currently held item stack with a secret key so that only items locked with that key stack.
+    usage: /go-lock <key>
+    permission: gameobjectmod.lock
