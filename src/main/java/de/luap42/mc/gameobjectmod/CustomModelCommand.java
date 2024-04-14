@@ -34,7 +34,7 @@ public class CustomModelCommand implements CommandExecutor {
             if(strings[0].equals(("clear"))) {
                 itemMeta.setCustomModelData(null);
             } else {
-                itemMeta.setCustomModelData(Integer.getInteger(strings[0], null));
+                itemMeta.setCustomModelData(Integer.parseInt(strings[0]));
             }
 
             player.sendMessage("Custom Model Data has been updated.");

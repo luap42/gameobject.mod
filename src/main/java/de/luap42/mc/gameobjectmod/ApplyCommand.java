@@ -71,7 +71,7 @@ public class ApplyCommand implements CommandExecutor {
 
             String savedCustomModel = fetchString(playerData, saveName, "custom_model");
             if (savedCustomModel != null) {
-                itemMeta.setCustomModelData(Integer.valueOf(savedCustomModel));
+                itemMeta.setCustomModelData(Integer.parseInt(savedCustomModel));
             }
 
             String isLocked = fetchString(playerData, saveName, "locked");
