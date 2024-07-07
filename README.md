@@ -1,6 +1,6 @@
 # GameObject.mod
 
-PaperMC plugin (for 1.20.4) for implementing "Game Objects", i. e. tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
+PaperMC plugin (for 1.20.4+) for implementing "Game Objects", i. e. items/tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
 
 ## Features
 
