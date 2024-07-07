@@ -130,6 +130,8 @@ To install this plugin, just copy the `GameObjectMod-<version>.jar` to the `plug
 
 Then restart or reload the server.
 
+Permissions can be configured in `~/plugins/GameObject.Mod/config.yml`. By default all commands are enabled. Server Operators will always be able to execute plugin commands.
+
 ## Attribution and License
 
 Developed with <3 by luap42.
