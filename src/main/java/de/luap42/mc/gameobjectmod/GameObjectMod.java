@@ -11,6 +11,7 @@ public final class GameObjectMod extends JavaPlugin {
         this.getCommand("go-lore").setExecutor(new LoreCommand());
         this.getCommand("go-format").setExecutor(new FormatCommand());
         this.getCommand("go-custommodel").setExecutor(new CustomModelCommand());
+        this.getCommand("go-glint").setExecutor(new GlintCommand());
 
         this.getCommand("go-save").setExecutor(new SaveCommand());
         this.getCommand("go-apply").setExecutor(new ApplyCommand());

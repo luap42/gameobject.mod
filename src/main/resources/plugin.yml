@@ -19,6 +19,9 @@ commands:
   go-custommodel:
     description: Set or clear a custom model data ID
     usage: /go-custommodel clear|<id>
+  go-glint:
+    description: Override the enchantment glint to always be shown (yes), never be shown (no), or remove override (auto, default)
+    usage: /go-glint yes|no|auto
   go-save:
     description: Saves the GameObject information of the currently held item stack for later /go-apply under your user account
     usage: /go-save <name> [<secretKey>]
