@@ -1,6 +1,6 @@
 # GameObject.mod
 
-PaperMC plugin (for 1.20.4+) for implementing "Game Objects", i. e. items/tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
+PaperMC plugin (for 1.21) for implementing "Game Objects", i. e. items/tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
 
 ## Features
 
@@ -85,6 +85,16 @@ Set the **custom model data** for the currently held item stack with the followi
 
 ```
 /go-custommodel <id>
+```
+
+### Enchantment Glint Override
+
+Since Minecraft added a new structured component for enchantment glint overrides, it is now possible to make an item always have an enchantment glint (yes), to never have an enchantment glint (no) or to defer to the default values (auto).
+
+Set the **enchantment glint override** for the currently held item stack with the following command:
+
+```
+/go-glint yes|no|auto
 ```
 
 Please note that the ID has to be a positive integral number.
