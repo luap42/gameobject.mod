@@ -23,6 +23,11 @@ public class SaveCommand implements CommandExecutor {
                 return false;
             }
 
+            if (!GameObjectMod.i.getConfig().getBoolean("allowSaveAndApply") && !player.isOp()) {
+                player.sendMessage("ERROR: you do not have the permissions to execute this command");
+                return true;
+            }
+
             String saveName = strings[0];
             String secretKey = null;
 

@@ -26,6 +26,11 @@ public class ApplyCommand implements CommandExecutor {
                 return false;
             }
 
+            if (!GameObjectMod.i.getConfig().getBoolean("allowSaveAndApply") && !player.isOp()) {
+                player.sendMessage("ERROR: you do not have the permissions to execute this command");
+                return true;
+            }
+
             String saveName = strings[0];
 
             ItemStack currentItemStack = player.getInventory().getItemInMainHand();
@@ -47,46 +52,56 @@ public class ApplyCommand implements CommandExecutor {
                 return true;
             }
 
-            String savedDisplayName = fetchString(playerData, saveName, "display_name");
-            String currentDisplayName = itemMeta.getDisplayName();
-            boolean hadNoDisplayName = false;
+            if (GameObjectMod.i.getConfig().getBoolean("allowFormat") || player.isOp()) {
+                String savedDisplayName = fetchString(playerData, saveName, "display_name");
+                String currentDisplayName = itemMeta.getDisplayName();
+                boolean hadNoDisplayName = false;
 
-            if (currentDisplayName.isEmpty()) {
-                currentDisplayName = FormatCommand.itemIDtoName(currentItemStack.getType().name().toLowerCase().replace("_", " "));
-                hadNoDisplayName = true;
+                if (currentDisplayName.isEmpty()) {
+                    currentDisplayName = FormatCommand.itemIDtoName(currentItemStack.getType().name().toLowerCase().replace("_", " "));
+                    hadNoDisplayName = true;
+                }
+
+                if (savedDisplayName == null && !hadNoDisplayName) {
+                    player.sendMessage("No display name found (weird...).");
+                    return true;
+                }
+                else if(!hadNoDisplayName && !ChatColor.stripColor(savedDisplayName).equals(ChatColor.stripColor(currentDisplayName))) {
+                    player.sendMessage("Display name must match '" + ChatColor.stripColor(savedDisplayName) + "', was '" + ChatColor.stripColor(currentDisplayName) + "'.");
+                    return true;
+                }
+
+                    if (!hadNoDisplayName)
+                        itemMeta.setDisplayName(savedDisplayName);
             }
 
-            if (savedDisplayName == null && !hadNoDisplayName) {
-                player.sendMessage("No display name found (weird...).");
-                return true;
-            }
-            else if(!hadNoDisplayName && !ChatColor.stripColor(savedDisplayName).equals(ChatColor.stripColor(currentDisplayName))) {
-                player.sendMessage("Display name must match '" + ChatColor.stripColor(savedDisplayName) + "', was '" + ChatColor.stripColor(currentDisplayName) + "'.");
-                return true;
+            if (GameObjectMod.i.getConfig().getBoolean("allowAddLore") || player.isOp()) {
+                String savedLore = fetchString(playerData, saveName, "lore");
+                if (savedLore != null) {
+                    itemMeta.setLore(List.of(savedLore.split("//")));
+                }
             }
 
-            if (!hadNoDisplayName)
-                itemMeta.setDisplayName(savedDisplayName);
-
-            String savedLore = fetchString(playerData, saveName, "lore");
-            if (savedLore != null) {
-                itemMeta.setLore(List.of(savedLore.split("//")));
+            if (GameObjectMod.i.getConfig().getBoolean("allowSetCustomModel") || player.isOp()) {
+                String savedCustomModel = fetchString(playerData, saveName, "custom_model");
+                if (savedCustomModel != null) {
+                    itemMeta.setCustomModelData(Integer.parseInt(savedCustomModel));
+                }
             }
 
-            String savedCustomModel = fetchString(playerData, saveName, "custom_model");
-            if (savedCustomModel != null) {
-                itemMeta.setCustomModelData(Integer.parseInt(savedCustomModel));
+            if (GameObjectMod.i.getConfig().getBoolean("allowChangeGlint") || player.isOp()) {
+                String savedGlint = fetchString(playerData, saveName, "glint");
+                if (savedGlint != null && !savedGlint.isEmpty()) {
+                    itemMeta.setEnchantmentGlintOverride(savedGlint == "true");
+                }
             }
 
-            String savedGlint = fetchString(playerData, saveName, "glint");
-            if (savedGlint != null && !savedGlint.isEmpty()) {
-                itemMeta.setEnchantmentGlintOverride(savedGlint == "true");
-            }
-
-            String isLocked = fetchString(playerData, saveName, "locked");
-            if (isLocked.equals("true")) {
-                String secretLockKey = fetchString(playerData, saveName, "lock_key");
-                itemData.set(lockKey, PersistentDataType.STRING, secretLockKey);
+            if (GameObjectMod.i.getConfig().getBoolean("allowLock") || player.isOp()) {
+                String isLocked = fetchString(playerData, saveName, "locked");
+                if (isLocked.equals("true")) {
+                    String secretLockKey = fetchString(playerData, saveName, "lock_key");
+                    itemData.set(lockKey, PersistentDataType.STRING, secretLockKey);
+                }
             }
 
             currentItemStack.setItemMeta(itemMeta);

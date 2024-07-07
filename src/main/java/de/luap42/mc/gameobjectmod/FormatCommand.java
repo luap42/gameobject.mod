@@ -24,6 +24,11 @@ public class FormatCommand  implements CommandExecutor {
                 return false;
             }
 
+            if (!GameObjectMod.i.getConfig().getBoolean("allowFormat") && !player.isOp()) {
+                player.sendMessage("ERROR: you do not have the permissions to execute this command");
+                return true;
+            }
+
             ItemStack currentItemStack = player.getInventory().getItemInMainHand();
 
             ItemMeta itemMeta;

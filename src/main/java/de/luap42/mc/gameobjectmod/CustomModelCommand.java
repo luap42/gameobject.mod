@@ -23,6 +23,11 @@ public class CustomModelCommand implements CommandExecutor {
                 return false;
             }
 
+            if (!GameObjectMod.i.getConfig().getBoolean("allowSetCustomModel") && !player.isOp()) {
+                player.sendMessage("ERROR: you do not have the permissions to execute this command");
+                return true;
+            }
+
             ItemStack currentItemStack = player.getInventory().getItemInMainHand();
 
             ItemMeta itemMeta;
