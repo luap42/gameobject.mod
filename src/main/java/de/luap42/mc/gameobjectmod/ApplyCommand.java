@@ -71,8 +71,8 @@ public class ApplyCommand implements CommandExecutor {
                     return true;
                 }
 
-                    if (!hadNoDisplayName)
-                        itemMeta.setDisplayName(savedDisplayName);
+                if (savedDisplayName != null && !savedDisplayName.isEmpty())
+                    itemMeta.setDisplayName(savedDisplayName);
             }
 
             if (GameObjectMod.i.getConfig().getBoolean("allowAddLore") || player.isOp()) {
