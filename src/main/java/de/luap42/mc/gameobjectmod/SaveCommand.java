@@ -69,6 +69,11 @@ public class SaveCommand implements CommandExecutor {
             else
                 storeString(playerData, saveName, "custom_model", "");
 
+            if(itemMeta.hasEnchantmentGlintOverride())
+                storeString(playerData, saveName, "glint", String.valueOf(itemMeta.getEnchantmentGlintOverride()));
+            else
+                storeString(playerData, saveName, "glint", "");
+
             storeString(playerData, saveName, "locked", String.valueOf(itemData.has(lockKey)));
 
             if(itemData.has(lockKey))

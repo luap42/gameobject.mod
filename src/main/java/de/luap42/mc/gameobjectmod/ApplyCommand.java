@@ -49,20 +49,24 @@ public class ApplyCommand implements CommandExecutor {
 
             String savedDisplayName = fetchString(playerData, saveName, "display_name");
             String currentDisplayName = itemMeta.getDisplayName();
-            if (currentDisplayName == null || currentDisplayName.isEmpty()) {
+            boolean hadNoDisplayName = false;
+
+            if (currentDisplayName.isEmpty()) {
                 currentDisplayName = FormatCommand.itemIDtoName(currentItemStack.getType().name().toLowerCase().replace("_", " "));
+                hadNoDisplayName = true;
             }
 
-            if (savedDisplayName == null) {
+            if (savedDisplayName == null && !hadNoDisplayName) {
                 player.sendMessage("No display name found (weird...).");
                 return true;
             }
-            else if(!ChatColor.stripColor(savedDisplayName).equals(ChatColor.stripColor(currentDisplayName))) {
+            else if(!hadNoDisplayName && !ChatColor.stripColor(savedDisplayName).equals(ChatColor.stripColor(currentDisplayName))) {
                 player.sendMessage("Display name must match '" + ChatColor.stripColor(savedDisplayName) + "', was '" + ChatColor.stripColor(currentDisplayName) + "'.");
                 return true;
             }
 
-            itemMeta.setDisplayName(savedDisplayName);
+            if (!hadNoDisplayName)
+                itemMeta.setDisplayName(savedDisplayName);
 
             String savedLore = fetchString(playerData, saveName, "lore");
             if (savedLore != null) {
@@ -72,6 +76,11 @@ public class ApplyCommand implements CommandExecutor {
             String savedCustomModel = fetchString(playerData, saveName, "custom_model");
             if (savedCustomModel != null) {
                 itemMeta.setCustomModelData(Integer.parseInt(savedCustomModel));
+            }
+
+            String savedGlint = fetchString(playerData, saveName, "glint");
+            if (savedGlint != null && !savedGlint.isEmpty()) {
+                itemMeta.setEnchantmentGlintOverride(savedGlint == "true");
             }
 
             String isLocked = fetchString(playerData, saveName, "locked");
