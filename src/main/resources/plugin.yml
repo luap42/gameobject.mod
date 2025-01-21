@@ -1,7 +1,7 @@
 name: GameObject.mod
 version: '${project.version}'
 main: de.luap42.mc.gameobjectmod.GameObjectMod
-api-version: '1.20'
+api-version: '1.21.4'
 
 commands:
   go-lock:
@@ -22,6 +22,9 @@ commands:
   go-glint:
     description: Override the enchantment glint to always be shown (yes), never be shown (no), or remove override (auto, default)
     usage: /go-glint yes|no|auto
+  go-itemmodel:
+    description: Set the item_model field of the item to the item model of another item
+    usage: /go-model clear|<namespace>:<id>
   go-save:
     description: Saves the GameObject information of the currently held item stack for later /go-apply under your user account
     usage: /go-save <name> [<secretKey>]

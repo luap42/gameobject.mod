@@ -15,6 +15,7 @@ public final class GameObjectMod extends JavaPlugin {
         config.addDefault("allowAddLore", true);
         config.addDefault("allowFormat", true);
         config.addDefault("allowSetCustomModel", true);
+        config.addDefault("allowSetItemModel", true);
         config.addDefault("allowChangeGlint", true);
         config.addDefault("allowSaveAndApply", true);
         config.options().copyDefaults(true);
@@ -25,6 +26,7 @@ public final class GameObjectMod extends JavaPlugin {
         this.getCommand("go-lore").setExecutor(new LoreCommand());
         this.getCommand("go-format").setExecutor(new FormatCommand());
         this.getCommand("go-custommodel").setExecutor(new CustomModelCommand());
+        this.getCommand("go-itemmodel").setExecutor(new ItemModelCommand());
         this.getCommand("go-glint").setExecutor(new GlintCommand());
 
         this.getCommand("go-save").setExecutor(new SaveCommand());
