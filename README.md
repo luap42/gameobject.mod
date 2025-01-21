@@ -1,6 +1,6 @@
 # GameObject.mod
 
-PaperMC plugin (for 1.21) for implementing "Game Objects", i. e. items/tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
+PaperMC plugin (for 1.21.4) for implementing "Game Objects", i. e. items/tokens that serve a specific purpose in an in-game game/event and therefore need/profit  from special formatting or protection.
 
 ## Features
 
@@ -85,6 +85,16 @@ Set the **custom model data** for the currently held item stack with the followi
 
 ```
 /go-custommodel <id>
+```
+
+### Item Model Override
+
+Starting with MC 1.21.1 it is now possible to set a custom item model, such as "minecraft:diamond" which should be used instead of the default item model. 
+
+Set the **item model override** for the currently held item stack with the following command:
+
+```
+/go-custommodel clear|<namespace>:<item>
 ```
 
 ### Enchantment Glint Override
